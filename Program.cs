@@ -351,6 +351,79 @@ namespace Debug_Tool_2._1
 
 
                     string userpath = System.Environment.GetEnvironmentVariable("USERPROFILE");
+                    string sourceDir = drive + @"Users"; 
+                    string destinationDir = userpath;
+                    bool recursive = true;
+                    Console.WriteLine("src = " + sourceDir);
+                    Console.WriteLine("des = " + destinationDir);
+                    Console.WriteLine("Recursive = " + recursive);
+
+
+
+                    /*// Get the directory information using directoryInfo() method
+                    DirectoryInfo folder = new DirectoryInfo(sourceDir);
+      
+                    // Calling a folderSize() method
+                    long totalFolderSize = folderSize(folder);
+      
+                    Console.WriteLine("Total folder size in bytes: " + totalFolderSize);*/
+
+
+                    /*FileStream s2 = new FileStream("test.txt", FileMode.Open, FileAccess.Write);
+                    Console.WriteLine(s2);*/
+
+
+
+                    CopyDirectory(sourceDir, destinationDir, recursive);
+
+
+                    CopyC = false;
+                }
+                if (CopyC == true)
+                {
+
+                    FileInfo fv = new FileInfo(Directory.GetCurrentDirectory());
+                    string drive = Path.GetPathRoot(fv.FullName);
+
+
+
+                    string userpath = System.Environment.GetEnvironmentVariable("USERPROFILE");
+                    string sourceDir = userpath;
+                    string destinationDir = drive + @"Users";
+                    bool recursive = true;
+                    Console.WriteLine("src = " + sourceDir);
+                    Console.WriteLine("des = " + destinationDir);
+                    Console.WriteLine("Recursive = " + recursive);
+
+
+
+                    /*// Get the directory information using directoryInfo() method
+                    DirectoryInfo folder = new DirectoryInfo(sourceDir);
+      
+                    // Calling a folderSize() method
+                    long totalFolderSize = folderSize(folder);
+      
+                    Console.WriteLine("Total folder size in bytes: " + totalFolderSize);*/
+
+
+                    /*FileStream s2 = new FileStream("test.txt", FileMode.Open, FileAccess.Write);
+                    Console.WriteLine(s2);*/
+
+
+
+                    CopyDirectory(sourceDir, destinationDir, recursive);
+
+
+                    CopyC = false;
+                }if (PasteC == true)
+                {
+
+                    FileInfo fv = new FileInfo(Directory.GetCurrentDirectory());
+                    string drive = Path.GetPathRoot(fv.FullName);
+
+
+
+                    string userpath = System.Environment.GetEnvironmentVariable("USERPROFILE");
                     string sourceDir = userpath;
                     string destinationDir = drive + @"Users";
                     bool recursive = true;

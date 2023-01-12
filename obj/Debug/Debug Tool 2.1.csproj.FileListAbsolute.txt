@@ -8,3 +8,13 @@ G:\My Drive\dev\Debug Tool 2.1\obj\Debug\Debug Tool 2.1.csproj.GenerateResource.
 G:\My Drive\dev\Debug Tool 2.1\obj\Debug\Debug Tool 2.1.csproj.CoreCompileInputs.cache
 G:\My Drive\dev\Debug Tool 2.1\obj\Debug\Debug Tool 2.1.exe
 G:\My Drive\dev\Debug Tool 2.1\obj\Debug\Debug Tool 2.1.pdb
+G:\My Drive\dev\Debug-Tool-2.1\bin\Debug\Debug Tool 2.1.exe.config
+G:\My Drive\dev\Debug-Tool-2.1\bin\Debug\Debug Tool 2.1.exe
+G:\My Drive\dev\Debug-Tool-2.1\bin\Debug\Debug Tool 2.1.pdb
+G:\My Drive\dev\Debug-Tool-2.1\obj\Debug\Debug Tool 2.1.csproj.AssemblyReference.cache
+G:\My Drive\dev\Debug-Tool-2.1\obj\Debug\Debug Tool 2.1.csproj.SuggestedBindingRedirects.cache
+G:\My Drive\dev\Debug-Tool-2.1\obj\Debug\Debug_Tool_2._1.Properties.Resources.resources
+G:\My Drive\dev\Debug-Tool-2.1\obj\Debug\Debug Tool 2.1.csproj.GenerateResource.cache
+G:\My Drive\dev\Debug-Tool-2.1\obj\Debug\Debug Tool 2.1.csproj.CoreCompileInputs.cache
+G:\My Drive\dev\Debug-Tool-2.1\obj\Debug\Debug Tool 2.1.exe
+G:\My Drive\dev\Debug-Tool-2.1\obj\Debug\Debug Tool 2.1.pdb
