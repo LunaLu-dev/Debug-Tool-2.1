@@ -351,8 +351,8 @@ namespace Debug_Tool_2._1
 
 
                     string userpath = System.Environment.GetEnvironmentVariable("USERPROFILE");
-                    string sourceDir = drive + @"Users"; 
-                    string destinationDir = userpath;
+                    string sourceDir = userpath;  
+                    string destinationDir = drive + @"Users";
                     bool recursive = true;
                     Console.WriteLine("src = " + sourceDir);
                     Console.WriteLine("des = " + destinationDir);
@@ -379,7 +379,7 @@ namespace Debug_Tool_2._1
 
                     CopyC = false;
                 }
-                if (CopyC == true)
+                if (PasteC == true)
                 {
 
                     FileInfo fv = new FileInfo(Directory.GetCurrentDirectory());
@@ -388,69 +388,17 @@ namespace Debug_Tool_2._1
 
 
                     string userpath = System.Environment.GetEnvironmentVariable("USERPROFILE");
-                    string sourceDir = userpath;
-                    string destinationDir = drive + @"Users";
+                    string sourceDir = drive + @"Users"; 
+                    string destinationDir = userpath;
                     bool recursive = true;
                     Console.WriteLine("src = " + sourceDir);
                     Console.WriteLine("des = " + destinationDir);
                     Console.WriteLine("Recursive = " + recursive);
 
+                    PasteDirectory(sourceDir, destinationDir, recursive);
 
 
-                    /*// Get the directory information using directoryInfo() method
-                    DirectoryInfo folder = new DirectoryInfo(sourceDir);
-      
-                    // Calling a folderSize() method
-                    long totalFolderSize = folderSize(folder);
-      
-                    Console.WriteLine("Total folder size in bytes: " + totalFolderSize);*/
-
-
-                    /*FileStream s2 = new FileStream("test.txt", FileMode.Open, FileAccess.Write);
-                    Console.WriteLine(s2);*/
-
-
-
-                    CopyDirectory(sourceDir, destinationDir, recursive);
-
-
-                    CopyC = false;
-                }if (PasteC == true)
-                {
-
-                    FileInfo fv = new FileInfo(Directory.GetCurrentDirectory());
-                    string drive = Path.GetPathRoot(fv.FullName);
-
-
-
-                    string userpath = System.Environment.GetEnvironmentVariable("USERPROFILE");
-                    string sourceDir = userpath;
-                    string destinationDir = drive + @"Users";
-                    bool recursive = true;
-                    Console.WriteLine("src = " + sourceDir);
-                    Console.WriteLine("des = " + destinationDir);
-                    Console.WriteLine("Recursive = " + recursive);
-
-
-
-                    /*// Get the directory information using directoryInfo() method
-                    DirectoryInfo folder = new DirectoryInfo(sourceDir);
-      
-                    // Calling a folderSize() method
-                    long totalFolderSize = folderSize(folder);
-      
-                    Console.WriteLine("Total folder size in bytes: " + totalFolderSize);*/
-
-
-                    /*FileStream s2 = new FileStream("test.txt", FileMode.Open, FileAccess.Write);
-                    Console.WriteLine(s2);*/
-
-
-
-                    CopyDirectory(sourceDir, destinationDir, recursive);
-
-
-                    CopyC = false;
+                    PasteC = false;
                 }
 
 
@@ -603,10 +551,16 @@ namespace Debug_Tool_2._1
             // Get the files in the source directory and copy to the destination directory
             foreach (FileInfo file in dir.GetFiles())
             {
+                string targetFilePath = Path.Combine(destinationDir, file.Name);
                 try
                 {
+                    if (File.Exists(targetFilePath))
+                    {
+                        string Backup = @"C:\DEBUG-BACKUP\";
+                        File.Replace(sourceDir + file.FullName, targetFilePath, Backup);
+                        continue;
+                    }
 
-                    string targetFilePath = Path.Combine(destinationDir, file.Name);
                     file.CopyTo(targetFilePath);
                     Console.WriteLine(file.FullName + "---" + file.Length + "b");
                 }
@@ -617,7 +571,19 @@ namespace Debug_Tool_2._1
                 }
                 catch (IOException)
                 {
-                    Console.WriteLine("ERrOR! FILE IN USE OR ALREADY COPIED, SKIPPING FILE {" + Path.Combine(destinationDir, file.Name) + "}");
+                    Console.WriteLine("ERrOR! FILE IN USE OR ALREADY EXISTS, TRYING AGAIN {" + Path.Combine(destinationDir, file.Name) + "}");
+                    try {
+                        //Removes the file that did alredy exist
+                        File.Delete(destinationDir);
+
+                        //Copying the file again
+                        file.CopyTo(targetFilePath);
+                        Console.WriteLine(file.FullName + "---" + file.Length + "b");
+                    }
+                    catch(IOException) {
+                        Console.WriteLine("ERrOR! Destination file is in use¨,  SKIPPING FILE");
+                        continue;
+                    }
                     continue;
                 }
 
