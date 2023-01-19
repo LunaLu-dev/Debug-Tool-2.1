@@ -348,6 +348,16 @@ namespace Debug_Tool_2._1
                     FileInfo fv = new FileInfo(Directory.GetCurrentDirectory());
                     string drive = Path.GetPathRoot(fv.FullName);
 
+                    if (drive == @"C:\")
+                    {
+                        Console.WriteLine(@"ERrOR, can not be used on the C:\ partition");
+                        Console.WriteLine();
+                        Console.WriteLine("Please try it on a nother drive");
+                        Console.WriteLine("Press any eneter to continue...");
+                        Console.ReadLine();
+                        Application.Exit();
+                    }
+
 
 
                     string userpath = System.Environment.GetEnvironmentVariable("USERPROFILE");
