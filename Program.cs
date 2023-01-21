@@ -348,39 +348,32 @@ namespace Debug_Tool_2._1
                     FileInfo fv = new FileInfo(Directory.GetCurrentDirectory());
                     string drive = Path.GetPathRoot(fv.FullName);
 
-                    if (drive == @"C:\")
-                    {
-                        Console.WriteLine(@"ERrOR, can not be used on the C:\ partition");
-                        Console.WriteLine();
-                        Console.WriteLine("Please try it on a nother drive");
-                        Console.WriteLine("Press any eneter to continue...");
-                        Console.ReadLine();
-                        Application.Exit();
-                    }
-
-
-
                     string userpath = System.Environment.GetEnvironmentVariable("USERPROFILE");
-                    string sourceDir = userpath;  
+                    string sourceDir = userpath;
                     string destinationDir = drive + @"Users";
                     bool recursive = true;
+                    if (drive == @"C:\")
+                    {
+                        destinationDir = drive + @"User_Backup";
+                    }
+
                     Console.WriteLine("src = " + sourceDir);
                     Console.WriteLine("des = " + destinationDir);
                     Console.WriteLine("Recursive = " + recursive);
 
 
 
-                    /*// Get the directory information using directoryInfo() method
-                    DirectoryInfo folder = new DirectoryInfo(sourceDir);
+                    //// Get the directory information using directoryInfo() method
+                    //DirectoryInfo folder = new DirectoryInfo(sourceDir);
       
-                    // Calling a folderSize() method
-                    long totalFolderSize = folderSize(folder);
+                    //// Calling a folderSize() method
+                    //long totalFolderSize = folderSize(folder);
       
-                    Console.WriteLine("Total folder size in bytes: " + totalFolderSize);*/
+                    //Console.WriteLine("Total folder size in bytes: " + totalFolderSize);*/
 
 
-                    /*FileStream s2 = new FileStream("test.txt", FileMode.Open, FileAccess.Write);
-                    Console.WriteLine(s2);*/
+                    //FileStream s2 = new FileStream("test.txt", FileMode.Open, FileAccess.Write);
+                    //Console.WriteLine(s2);
 
 
 

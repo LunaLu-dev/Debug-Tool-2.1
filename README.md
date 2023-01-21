@@ -6,4 +6,4 @@
 
 <h3>Backup Function</h3>
 <hr>
-<p>It is possible to use this as a backup tool to backup you wohole user by putting the program on another partition than the C:\ and run the Copy userdata -> Run this will show up a lot of activity in the console window that just show what file it's copying and how big it is, at the same time you will see a new folder be made right next to the proram named "User" and if yo take a look at it you will see the folder strukture start to build up</p>
+<p>It is possible to use this as a backup tool to backup you wohole user by putting the program on another partition than the C:\ and run the Copy userdata -> Run this will show up a lot of activity in the console window that just show what file it's copying and how big it is, at the same time you will see a new folder be made right next to the proram named "User" and if yo take a look at it you will see the folder strukture start to build up, OBS. if you run this program on the C Drive the program will put the data in a new directory with the path "C:\User_Backup\"</p>
