@@ -252,25 +252,6 @@ namespace Debug_Tool_2._1
                     Copy.Text = "Copy Userdata";
                 }
             };
-            Button Paste = new Button()
-            {
-                Height = 100,
-                Width = 100,
-                Text = "Paste Userdata",
-                Location = new System.Drawing.Point(120, 120)
-            };
-            Paste.Click += (o, s) => {
-                if (PasteC == false)
-                {
-                    PasteC = true;
-                    Paste.Text = "Paste Userdata ✓";
-                }
-                else if (PasteC == true)
-                {
-                    PasteC = false;
-                    Paste.Text = "Paste Userdata";
-                }
-            };
 
 
             //run button
@@ -382,27 +363,6 @@ namespace Debug_Tool_2._1
 
                     CopyC = false;
                 }
-                if (PasteC == true)
-                {
-
-                    FileInfo fv = new FileInfo(Directory.GetCurrentDirectory());
-                    string drive = Path.GetPathRoot(fv.FullName);
-
-
-
-                    string userpath = System.Environment.GetEnvironmentVariable("USERPROFILE");
-                    string sourceDir = drive + @"Users"; 
-                    string destinationDir = userpath;
-                    bool recursive = true;
-                    Console.WriteLine("src = " + sourceDir);
-                    Console.WriteLine("des = " + destinationDir);
-                    Console.WriteLine("Recursive = " + recursive);
-
-                    PasteDirectory(sourceDir, destinationDir, recursive);
-
-
-                    PasteC = false;
-                }
 
 
 
@@ -422,7 +382,6 @@ namespace Debug_Tool_2._1
                 SFC.Visible = false;
                 DISM.Visible = false;
                 Copy.Visible = false;
-                Paste.Visible = false;
                 WinGet.Visible = false;
                 RUN.Visible = false;
 
@@ -440,7 +399,6 @@ namespace Debug_Tool_2._1
                 SFC.Visible = true;
                 DISM.Visible = true;
                 Copy.Visible = true;
-                Paste.Visible = true;
                 WinGet.Visible = true;
                 RUN.Visible = true;
 
@@ -461,7 +419,6 @@ namespace Debug_Tool_2._1
             myform.Controls.Add(DISM);
             myform.Controls.Add(WinGet);
             myform.Controls.Add(Copy);
-            myform.Controls.Add(Paste);
 
             //WinGet
             myform.Controls.Add(WinGet_L);
@@ -488,8 +445,12 @@ namespace Debug_Tool_2._1
             var dir = new DirectoryInfo(sourceDir);
 
             // Check if the source directory exists
-            if (!dir.Exists)
+            if (!dir.Exists) {
                 throw new DirectoryNotFoundException("Source directory not found: {" + dir.FullName + "}");
+            }
+
+
+                
 
             // Cache directories before we start copying
             DirectoryInfo[] dirs = dir.GetDirectories();
