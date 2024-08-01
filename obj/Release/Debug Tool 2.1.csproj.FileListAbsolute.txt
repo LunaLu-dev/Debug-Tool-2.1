@@ -8,3 +8,12 @@ G:\My Drive\dev\Debug-Tool-2.1\obj\Release\Debug Tool 2.1.csproj.GenerateResourc
 G:\My Drive\dev\Debug-Tool-2.1\obj\Release\Debug Tool 2.1.csproj.CoreCompileInputs.cache
 G:\My Drive\dev\Debug-Tool-2.1\obj\Release\Debug Tool 2.1.exe
 G:\My Drive\dev\Debug-Tool-2.1\obj\Release\Debug Tool 2.1.pdb
+B:\dev\Debug-Tool-2.1\bin\Release\Debug Tool 2.1.exe.config
+B:\dev\Debug-Tool-2.1\bin\Release\Debug Tool 2.1.exe
+B:\dev\Debug-Tool-2.1\bin\Release\Debug Tool 2.1.pdb
+B:\dev\Debug-Tool-2.1\obj\Release\Debug Tool 2.1.csproj.AssemblyReference.cache
+B:\dev\Debug-Tool-2.1\obj\Release\Debug_Tool_2._1.Properties.Resources.resources
+B:\dev\Debug-Tool-2.1\obj\Release\Debug Tool 2.1.csproj.GenerateResource.cache
+B:\dev\Debug-Tool-2.1\obj\Release\Debug Tool 2.1.csproj.CoreCompileInputs.cache
+B:\dev\Debug-Tool-2.1\obj\Release\Debug Tool 2.1.exe
+B:\dev\Debug-Tool-2.1\obj\Release\Debug Tool 2.1.pdb

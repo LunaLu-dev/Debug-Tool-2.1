@@ -3,7 +3,6 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.Reflection;
 using System.Threading;
 
 namespace Debug_Tool_2._1
@@ -13,18 +12,18 @@ namespace Debug_Tool_2._1
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        static readonly Stopwatch timer = new Stopwatch();
+        static readonly Stopwatch Timer = new Stopwatch();
         [STAThread]
-        static void Main(string[] args)
+        static void Main()
         {
 
-            Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
-            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+            Application.ThreadException += Application_ThreadException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
-            bool SfcC = false;
-            bool DismC = false;
-            bool CopyC = false;
-            bool PasteC = false;
+            bool sfcC = false;
+            bool dismC = false;
+            bool copyC = false;
+            bool pasteC = false;
 
             Form myform = new Form()
             {
@@ -34,15 +33,15 @@ namespace Debug_Tool_2._1
 
 
             //WINGET
-            bool chrome_ins = false;
-            bool firefox_ins = false;
-            bool opera_ins = false;
-            bool steam_ins = false;
-            bool discord_ins = false;
-            bool update_ins = false;
+            bool chromeIns = false;
+            bool firefoxIns = false;
+            bool operaIns = false;
+            bool steamIns = false;
+            bool discordIns = false;
+            bool updateIns = false;
 
 
-            Label WinGet_L = new Label()
+            Label winGetL = new Label()
             {
                 Height = 25,
                 Width = 500,
@@ -60,14 +59,14 @@ namespace Debug_Tool_2._1
                 Visible = false
             };
             chrome.Click += (o, s) => {
-                if (chrome_ins == false)
+                if (chromeIns == false)
                 {
-                    chrome_ins = true;
+                    chromeIns = true;
                     chrome.Text = "Google Chrome ✓";
                 }
-                else if (chrome_ins == true)
+                else if (chromeIns)
                 {
-                    chrome_ins = false;
+                    chromeIns = false;
                     chrome.Text = "Google Chrome";
                 }
             };
@@ -81,14 +80,14 @@ namespace Debug_Tool_2._1
                 Visible = false
             };
             firefox.Click += (o, s) => {
-                if (firefox_ins == false)
+                if (firefoxIns == false)
                 {
-                    firefox_ins = true;
-                    firefox.Text = "Firefox ✓";
+                    firefoxIns = true;
+                    firefox.Text = "Firefox ✓"; 
                 }
-                else if (firefox_ins == true)
+                else if (firefoxIns)
                 {
-                    firefox_ins = false;
+                    firefoxIns = false;
                     firefox.Text = "Firefox";
                 }
             };
@@ -102,14 +101,14 @@ namespace Debug_Tool_2._1
                 Visible = false
             };
             opera.Click += (o, s) => {
-                if (opera_ins == false)
+                if (operaIns == false)
                 {
-                    opera_ins = true;
+                    operaIns = true;
                     opera.Text = "Opera ✓";
                 }
-                else if (opera_ins == true)
+                else if (operaIns)
                 {
-                    opera_ins = false;
+                    operaIns = false;
                     opera.Text = "Opera";
                 }
             };
@@ -123,14 +122,14 @@ namespace Debug_Tool_2._1
                 Visible = false
             };
             steam.Click += (o, s) => {
-                if (steam_ins == false)
+                if (steamIns == false)
                 {
-                    steam_ins = true;
+                    steamIns = true;
                     steam.Text = "Steam ✓";
                 }
-                else if (steam_ins == true)
+                else if (steamIns)
                 {
-                    steam_ins = false;
+                    steamIns = false;
                     steam.Text = "Steam";
                 }
             };
@@ -143,14 +142,14 @@ namespace Debug_Tool_2._1
                 Visible = false
             };
             discord.Click += (o, s) => {
-                if (discord_ins == false)
+                if (discordIns == false)
                 {
-                    discord_ins = true;
+                    discordIns = true;
                     discord.Text = "Discord ✓";
                 }
-                else if (discord_ins == true)
+                else if (discordIns)
                 {
-                    discord_ins = false;
+                    discordIns = false;
                     discord.Text = "Discord";
                 }
             };
@@ -165,182 +164,175 @@ namespace Debug_Tool_2._1
                 Visible = false
             };
             update.Click += (o, s) => {
-                if (update_ins == false)
+                if (updateIns == false)
                 {
-                    update_ins = true;
+                    updateIns = true;
                     update.Text = "Update /all ✓";
                 }
-                else if (update_ins == true)
+                else if (updateIns)
                 {
-                    update_ins = false;
+                    updateIns = false;
                     update.Text = "Update /all";
                 }
             };
-            Button WinGet_Back = new Button()
+            Button winGetBack = new Button()
             {
                 Height = 50,
                 Width = 100,
                 Text = "Confirm",
                 Visible = false,
-                Location = new System.Drawing.Point(10, 300)
+                Location = new Point(10, 300)
             };
 
 
-
-
-
-
-
-
             //DEBUG
-            Button SFC = new Button()
+            Button sfc = new Button()
             {
                 Height = 100,
                 Width = 100,
                 Text = "SFC",
-                Location = new System.Drawing.Point(10, 10)
+                Location = new Point(10, 10)
             };
-            SFC.Click += (o, s) => {
-                if (SfcC == false)
+            sfc.Click += (o, s) => {
+                if (sfcC == false)
                 {
-                    SfcC = true;
-                    SFC.Text = "SFC ✓";
+                    sfcC = true;
+                    sfc.Text = "SFC ✓";
                 }
-                else if (SfcC == true)
+                else if (sfcC)
                 {
-                    SfcC = false;
-                    SFC.Text = "SFC";
+                    sfcC = false;
+                    sfc.Text = "SFC";
                 }
             };
 
-            Button DISM = new Button()
+            Button dism = new Button()
             {
                 Height = 100,
                 Width = 100,
                 Text = "DISM",
-                Location = new System.Drawing.Point(120, 10)
+                Location = new Point(120, 10)
             };
-            DISM.Click += (o, s) => {
-                if (DismC == false)
+            dism.Click += (o, s) => {
+                if (dismC == false)
                 {
-                    DismC = true;
-                    DISM.Text = "DISM ✓";
+                    dismC = true;
+                    dism.Text = "DISM ✓";
                 }
-                else if (DismC == true)
+                else if (dismC)
                 {
-                    DismC = false;
-                    DISM.Text = "DISM";
+                    dismC = false;
+                    dism.Text = "DISM";
                 }
             };
 
-            Button Copy = new Button()
+            Button copy = new Button()
             {
                 Height = 100,
                 Width = 100,
                 Text = "Copy Userdata",
-                Location = new System.Drawing.Point(10, 120)
+                Location = new Point(10, 120)
             };
-            Copy.Click += (o, s) => {
-                if (CopyC == false)
+            copy.Click += (o, s) => {
+                if (copyC == false)
                 {
-                    CopyC = true;
-                    Copy.Text = "Copy Userdata ✓";
+                    copyC = true;
+                    copy.Text = "Copy Userdata ✓";
                 }
-                else if (CopyC == true)
+                else if (copyC)
                 {
-                    CopyC = false;
-                    Copy.Text = "Copy Userdata";
+                    copyC = false;
+                    copy.Text = "Copy Userdata";
                 }
             };
 
 
             //run button
-            Button RUN = new Button()
+            Button run = new Button()
             {
                 Height = 50,
                 Width = 100,
                 Text = "RUN",
-                Location = new System.Drawing.Point(10, 300)
+                Location = new Point(10, 300)
             };
-            RUN.Click += (o, s) => {
-                timer.Start();
+            run.Click += (o, s) => {
+                Timer.Start();
                 //Reset Log
-                System.Diagnostics.Process.Start("CMD.exe", "/C clear > log.txt");
+                Process.Start("CMD.exe", "/C clear > log.txt");
                 //WinGet
                 //Web Browsers
-                if (chrome_ins == true)
+                if (chromeIns)
                 {
-                    var process = System.Diagnostics.Process.Start("CMD.exe", "/C winget install Google.Chrome");
-                    process.WaitForExit();
+                    var process = Process.Start("CMD.exe", "/C winget install Google.Chrome");
+                    process?.WaitForExit();
                     Console.WriteLine("Installing Chrome - Done");
                 }
-                if (firefox_ins == true)
+                if (firefoxIns)
                 {
-                    var process = System.Diagnostics.Process.Start("CMD.exe", "/C winget install Mozilla.Firefox");
-                    process.WaitForExit();
+                    var process = Process.Start("CMD.exe", "/C winget install Mozilla.Firefox");
+                    process?.WaitForExit();
                     Console.WriteLine("Installing Firefox - Done");
                 }
-                if (opera_ins == true)
+                if (operaIns)
                 {
-                    var process = System.Diagnostics.Process.Start("CMD.exe", "/C winget install -e --id Opera.Opera");
-                    process.WaitForExit();
+                    var process = Process.Start("CMD.exe", "/C winget install -e --id Opera.Opera");
+                    process?.WaitForExit();
                     Console.WriteLine("Installing Opera - Done");
                 }
                 //Software
-                if (steam_ins == true)
+                if (steamIns)
                 {
-                    var process = System.Diagnostics.Process.Start("CMD.exe", "/C winget install Valve.Steam");
-                    process.WaitForExit();
+                    var process = Process.Start("CMD.exe", "/C winget install Valve.Steam");
+                    process?.WaitForExit();
                     Console.WriteLine("Installing Steam - Done");
                 }
-                if (discord_ins == true)
+                if (discordIns)
                 {
-                    var process = System.Diagnostics.Process.Start("CMD.exe", "/C winget install Discord.Discord");
-                    process.WaitForExit();
+                    var process = Process.Start("CMD.exe", "/C winget install Discord.Discord");
+                    process?.WaitForExit();
                     Console.WriteLine("Installing Discord - Done");
                 }
 
                 //command
-                if (update_ins == true)
+                if (updateIns)
                 {
-                    var process = System.Diagnostics.Process.Start("CMD.exe", "/C winget upgrade --all");
-                    process.WaitForExit();
+                    var process = Process.Start("CMD.exe", "/C winget upgrade --all");
+                    process?.WaitForExit();
                     Console.WriteLine("Update - Done");
                 }
 
                 //Debuger
-                if (SfcC == true)
+                if (sfcC)
                 {
-                    var process = System.Diagnostics.Process.Start("CMD.exe", "/C sfc /scannow >> log.txt");
-                    process.WaitForExit();
+                    var process = Process.Start("CMD.exe", "/C sfc /scannow >> log.txt");
+                    process?.WaitForExit();
                     Console.WriteLine("System File Checker - Done");
-                    SfcC = false;
+                    sfcC = false;
                 }
-                if (DismC == true)
+                if (dismC)
                 {
-                    var process = System.Diagnostics.Process.Start("CMD.exe", "/C DISM /Online /Cleanup-Image /RestoreHealth >> log.txt");
-                    process.WaitForExit();
+                    var process = Process.Start("CMD.exe", "/C DISM /Online /Cleanup-Image /RestoreHealth >> log.txt");
+                    process?.WaitForExit();
                     Console.WriteLine("Deployment Image Servicing and Management Fix - Done");
-                    DismC = false;
+                    dismC = false;
                 }
-                if (CopyC == true)
+                if (copyC)
                 {
-
-                    FileInfo fv = new FileInfo(Directory.GetCurrentDirectory());
+                    //Environment.CurrentDirectory = Path.GetDirectoryName(Process.GetCurrentProcess().MainModule.FileName);
+                    DirectoryInfo fv = new DirectoryInfo(Environment.CurrentDirectory);
                     string drive = Path.GetPathRoot(fv.FullName);
 
-                    string userpath = System.Environment.GetEnvironmentVariable("USERPROFILE");
+                    string userpath = Environment.GetEnvironmentVariable("USERPROFILE");
                     string sourceDir = userpath;
                     string destinationDir = drive + @"Users";
-                    bool recursive = true;
                     if (drive == @"C:\")
                     {
                         destinationDir = drive + @"User_Backup";
                     }
 
-                    Console.WriteLine("src = " + sourceDir);
-                    Console.WriteLine("des = " + destinationDir);
-                    Console.WriteLine("Recursive = " + recursive);
+                    Console.WriteLine($"src = {sourceDir}");
+                    Console.WriteLine($"des = {destinationDir}");
+                    Console.WriteLine("Recursive = true");
 
 
 
@@ -358,79 +350,79 @@ namespace Debug_Tool_2._1
 
 
 
-                    CopyDirectory(sourceDir, destinationDir, recursive);
+                    CopyDirectory(sourceDir, destinationDir, true);
 
 
-                    CopyC = false;
+                    copyC = false;
                 }
 
 
 
                 Console.WriteLine("DONE");
-                Console.WriteLine(timer.Elapsed.ToString());
-                timer.Stop();
+                Console.WriteLine(Timer.Elapsed.ToString());
+                Timer.Stop();
             };
 
-            Button WinGet = new Button()
+            Button winGet = new Button()
             {
                 Height = 100,
                 Width = 100,
                 Text = "Winget",
-                Location = new System.Drawing.Point(240, 10)
+                Location = new Point(240, 10)
             };
-            WinGet.Click += (o, s) => {
-                SFC.Visible = false;
-                DISM.Visible = false;
-                Copy.Visible = false;
-                WinGet.Visible = false;
-                RUN.Visible = false;
+            winGet.Click += (o, s) => {
+                sfc.Visible = false;
+                dism.Visible = false;
+                copy.Visible = false;
+                winGet.Visible = false;
+                run.Visible = false;
 
                 //WinGet Menu
-                WinGet_L.Visible = true;
+                winGetL.Visible = true;
                 chrome.Visible = true;
                 firefox.Visible = true;
                 opera.Visible = true;
                 steam.Visible = true;
                 discord.Visible = true;
                 update.Visible = true;
-                WinGet_Back.Visible = true;
+                winGetBack.Visible = true;
             };
-            WinGet_Back.Click += (o, s) => {
-                SFC.Visible = true;
-                DISM.Visible = true;
-                Copy.Visible = true;
-                WinGet.Visible = true;
-                RUN.Visible = true;
+            winGetBack.Click += (o, s) => {
+                sfc.Visible = true;
+                dism.Visible = true;
+                copy.Visible = true;
+                winGet.Visible = true;
+                run.Visible = true;
 
                 //WinGet Menu
-                WinGet_L.Visible = false;
+                winGetL.Visible = false;
                 chrome.Visible = false;
                 firefox.Visible = false;
                 opera.Visible = false;
                 steam.Visible = false;
                 discord.Visible = false;
                 update.Visible = false;
-                WinGet_Back.Visible = false;
+                winGetBack.Visible = false;
             };
 
 
 
-            myform.Controls.Add(SFC);
-            myform.Controls.Add(DISM);
-            myform.Controls.Add(WinGet);
-            myform.Controls.Add(Copy);
+            myform.Controls.Add(sfc);
+            myform.Controls.Add(dism);
+            myform.Controls.Add(winGet);
+            myform.Controls.Add(copy);
 
             //WinGet
-            myform.Controls.Add(WinGet_L);
+            myform.Controls.Add(winGetL);
             myform.Controls.Add(chrome);
             myform.Controls.Add(firefox);
             myform.Controls.Add(opera);
             myform.Controls.Add(steam);
             myform.Controls.Add(discord);
             myform.Controls.Add(update);
-            myform.Controls.Add(WinGet_Back);
+            myform.Controls.Add(winGetBack);
 
-            myform.Controls.Add(RUN);
+            myform.Controls.Add(run);
             myform.ShowDialog();
 
             while (myform.Created)
@@ -463,7 +455,6 @@ namespace Debug_Tool_2._1
             {
                 try
                 {
-
                     string targetFilePath = Path.Combine(destinationDir, file.Name);
                     file.CopyTo(targetFilePath);
                     Console.WriteLine(file.FullName + "---" + file.Length + "b");
@@ -471,24 +462,22 @@ namespace Debug_Tool_2._1
                 catch (UnauthorizedAccessException)
                 {
                     Console.WriteLine("ERrOR! FILE ACCESS DENIED, SKIPPING FILE {" + Path.Combine(destinationDir, file.Name) + "}");
-                    continue;
                 }
                 catch (IOException)
                 {
                     Console.WriteLine("ERrOR! FILE IN USE OR ALREADY COPIED, SKIPPING FILE {" + Path.Combine(destinationDir, file.Name) + "}");
-                    continue;
                 }
 
             }
 
             // If recursive and copying subdirectories, recursively call this method
-            if (recursive == true)
+            if (recursive)
             {
                 foreach (DirectoryInfo subDir in dirs)
                 {
-                    string userpath = System.Environment.GetEnvironmentVariable("USERPROFILE");
-                    string Exception_Spec = subDir.FullName;
-                    if (Exception_Spec == userpath + @"\AppData\Local\Microsoft\Windows\INetCache" || Exception_Spec == userpath + @"\AppData\Local\Microsoft\Windows\History" || Exception_Spec == userpath + @"\AppData\Local\Microsoft\Windows\Temporary Internet Files" || Exception_Spec == userpath + @"\AppData\Local\Programdata" || Exception_Spec == userpath + @"\AppData\Local\Temporary Internet Files" || Exception_Spec == userpath + @"\AppData\Local\Tidigare" || Exception_Spec == userpath + @"\AppData\Local\Packages" || Exception_Spec == userpath + @"\AppData\Roaming\Microsoft\Windows\Start Menu\Program" || Exception_Spec == userpath + @"\Cookies" || Exception_Spec == userpath + @"\AppData\Local\Temp\WinSAT" || Exception_Spec == userpath + @"\Documents\Min musik" || Exception_Spec == userpath + @"\Documents\Mina bilder" || Exception_Spec == userpath + @"\Documents\Mina videoklipp" || Exception_Spec == userpath + @"\Lokala inställningar" || Exception_Spec == userpath + @"\Mallar" || Exception_Spec == userpath + @"\Mina dokument" || Exception_Spec == userpath + @"\Nätverket" || Exception_Spec == userpath + @"\Programdata" || Exception_Spec == userpath + @"\Recent" || Exception_Spec == userpath + @"\SendTo" || Exception_Spec == userpath + @"\Skrivare" || Exception_Spec == userpath + @"\Start-meny" || Exception_Spec == userpath + @"\AppData\Local\Application Data" || subDir.FullName.Contains("cache") || subDir.FullName.Contains("Cache") || Exception_Spec == userpath + @"\AppData\Local\History" || Exception_Spec == userpath + @"\Application Data" || Exception_Spec == userpath + @"\Documents\My Music" || Exception_Spec == userpath + @"\Documents\My Pictures" || Exception_Spec == userpath + @"\Documents\My Videos" || Exception_Spec == userpath + @"\Local Settings" || Exception_Spec == userpath + @"\My Documents" || Exception_Spec == userpath + @"\NetHood" || Exception_Spec == userpath + @"\PrintHood" || Exception_Spec == userpath + @"\Start Menu" || Exception_Spec == userpath + @"\Templates" || Exception_Spec == userpath + @"AppData\Local\Temp")
+                    string userpath = Environment.GetEnvironmentVariable("USERPROFILE");
+                    string exceptionSpec = subDir.FullName;
+                    if (exceptionSpec == userpath + @"\AppData\Local\Microsoft\Windows\INetCache" || exceptionSpec == userpath + @"\AppData\Local\Microsoft\Windows\History" || exceptionSpec == userpath + @"\AppData\Local\Microsoft\Windows\Temporary Internet Files" || exceptionSpec == userpath + @"\AppData\Local\Programdata" || exceptionSpec == userpath + @"\AppData\Local\Temporary Internet Files" || exceptionSpec == userpath + @"\AppData\Local\Tidigare" || exceptionSpec == userpath + @"\AppData\Local\Packages" || exceptionSpec == userpath + @"\AppData\Roaming\Microsoft\Windows\Start Menu\Program" || exceptionSpec == userpath + @"\Cookies" || exceptionSpec == userpath + @"\AppData\Local\Temp\WinSAT" || exceptionSpec == userpath + @"\Documents\Min musik" || exceptionSpec == userpath + @"\Documents\Mina bilder" || exceptionSpec == userpath + @"\Documents\Mina videoklipp" || exceptionSpec == userpath + @"\Lokala inställningar" || exceptionSpec == userpath + @"\Mallar" || exceptionSpec == userpath + @"\Mina dokument" || exceptionSpec == userpath + @"\Nätverket" || exceptionSpec == userpath + @"\Programdata" || exceptionSpec == userpath + @"\Recent" || exceptionSpec == userpath + @"\SendTo" || exceptionSpec == userpath + @"\Skrivare" || exceptionSpec == userpath + @"\Start-meny" || exceptionSpec == userpath + @"\AppData\Local\Application Data" || subDir.FullName.Contains("cache") || subDir.FullName.Contains("Cache") || exceptionSpec == userpath + @"\AppData\Local\History" || exceptionSpec == userpath + @"\Application Data" || exceptionSpec == userpath + @"\Documents\My Music" || exceptionSpec == userpath + @"\Documents\My Pictures" || exceptionSpec == userpath + @"\Documents\My Videos" || exceptionSpec == userpath + @"\Local Settings" || exceptionSpec == userpath + @"\My Documents" || exceptionSpec == userpath + @"\NetHood" || exceptionSpec == userpath + @"\PrintHood" || exceptionSpec == userpath + @"\Start Menu" || exceptionSpec == userpath + @"\Templates" || exceptionSpec == userpath + @"AppData\Local\Temp")
                     {
                         continue;
                     }
@@ -520,8 +509,8 @@ namespace Debug_Tool_2._1
                 {
                     if (File.Exists(targetFilePath))
                     {
-                        string Backup = @"C:\DEBUG-BACKUP\";
-                        File.Replace(sourceDir + file.FullName, targetFilePath, Backup);
+                        string backup = @"C:\DEBUG-BACKUP\";
+                        File.Replace(sourceDir + file.FullName, targetFilePath, backup);
                         continue;
                     }
 
@@ -531,7 +520,6 @@ namespace Debug_Tool_2._1
                 catch (UnauthorizedAccessException)
                 {
                     Console.WriteLine("ERrOR! FILE ACCESS DENIED, SKIPPING FILE {" + Path.Combine(destinationDir, file.Name) + "}");
-                    continue;
                 }
                 catch (IOException)
                 {
@@ -546,21 +534,19 @@ namespace Debug_Tool_2._1
                     }
                     catch(IOException) {
                         Console.WriteLine("ERrOR! Destination file is in use¨,  SKIPPING FILE");
-                        continue;
                     }
-                    continue;
                 }
 
             }
 
             // If recursive and copying subdirectories, recursively call this method
-            if (recursive == true)
+            if (recursive)
             {
                 foreach (DirectoryInfo subDir in dirs)
                 {
-                    string userpath = System.Environment.GetEnvironmentVariable("USERPROFILE");
-                    string Exception_Spec = subDir.FullName;
-                    if (Exception_Spec == userpath + @"\AppData\Local\Microsoft\Windows\INetCache" || Exception_Spec == userpath + @"\AppData\Local\Microsoft\Windows\History" || Exception_Spec == userpath + @"\AppData\Local\Microsoft\Windows\Temporary Internet Files" || Exception_Spec == userpath + @"\AppData\Local\Programdata" || Exception_Spec == userpath + @"\AppData\Local\Temporary Internet Files" || Exception_Spec == userpath + @"\AppData\Local\Tidigare" || Exception_Spec == userpath + @"\AppData\Local\Packages" || Exception_Spec == userpath + @"\AppData\Roaming\Microsoft\Windows\Start Menu\Program" || Exception_Spec == userpath + @"\Cookies" || Exception_Spec == userpath + @"\AppData\Local\Temp\WinSAT" || Exception_Spec == userpath + @"\Documents\Min musik" || Exception_Spec == userpath + @"\Documents\Mina bilder" || Exception_Spec == userpath + @"\Documents\Mina videoklipp" || Exception_Spec == userpath + @"\Lokala inställningar" || Exception_Spec == userpath + @"\Mallar" || Exception_Spec == userpath + @"\Mina dokument" || Exception_Spec == userpath + @"\Nätverket" || Exception_Spec == userpath + @"\Programdata" || Exception_Spec == userpath + @"\Recent" || Exception_Spec == userpath + @"\SendTo" || Exception_Spec == userpath + @"\Skrivare" || Exception_Spec == userpath + @"\Start-meny" || Exception_Spec == userpath + @"\AppData\Local\Application Data" || subDir.FullName.Contains("cache") || subDir.FullName.Contains("Cache") || Exception_Spec == userpath + @"\AppData\Local\History" || Exception_Spec == userpath + @"\Application Data" || Exception_Spec == userpath + @"\Documents\My Music" || Exception_Spec == userpath + @"\Documents\My Pictures" || Exception_Spec == userpath + @"\Documents\My Videos" || Exception_Spec == userpath + @"\Local Settings" || Exception_Spec == userpath + @"\My Documents" || Exception_Spec == userpath + @"\NetHood" || Exception_Spec == userpath + @"\PrintHood" || Exception_Spec == userpath + @"\Start Menu" || Exception_Spec == userpath + @"\Templates" || Exception_Spec == userpath + @"AppData\Local\Temp")
+                    string userpath = Environment.GetEnvironmentVariable("USERPROFILE");
+                    string exceptionSpec = subDir.FullName;
+                    if (exceptionSpec == userpath + @"\AppData\Local\Microsoft\Windows\INetCache" || exceptionSpec == userpath + @"\AppData\Local\Microsoft\Windows\History" || exceptionSpec == userpath + @"\AppData\Local\Microsoft\Windows\Temporary Internet Files" || exceptionSpec == userpath + @"\AppData\Local\Programdata" || exceptionSpec == userpath + @"\AppData\Local\Temporary Internet Files" || exceptionSpec == userpath + @"\AppData\Local\Tidigare" || exceptionSpec == userpath + @"\AppData\Local\Packages" || exceptionSpec == userpath + @"\AppData\Roaming\Microsoft\Windows\Start Menu\Program" || exceptionSpec == userpath + @"\Cookies" || exceptionSpec == userpath + @"\AppData\Local\Temp\WinSAT" || exceptionSpec == userpath + @"\Documents\Min musik" || exceptionSpec == userpath + @"\Documents\Mina bilder" || exceptionSpec == userpath + @"\Documents\Mina videoklipp" || exceptionSpec == userpath + @"\Lokala inställningar" || exceptionSpec == userpath + @"\Mallar" || exceptionSpec == userpath + @"\Mina dokument" || exceptionSpec == userpath + @"\Nätverket" || exceptionSpec == userpath + @"\Programdata" || exceptionSpec == userpath + @"\Recent" || exceptionSpec == userpath + @"\SendTo" || exceptionSpec == userpath + @"\Skrivare" || exceptionSpec == userpath + @"\Start-meny" || exceptionSpec == userpath + @"\AppData\Local\Application Data" || subDir.FullName.Contains("cache") || subDir.FullName.Contains("Cache") || exceptionSpec == userpath + @"\AppData\Local\History" || exceptionSpec == userpath + @"\Application Data" || exceptionSpec == userpath + @"\Documents\My Music" || exceptionSpec == userpath + @"\Documents\My Pictures" || exceptionSpec == userpath + @"\Documents\My Videos" || exceptionSpec == userpath + @"\Local Settings" || exceptionSpec == userpath + @"\My Documents" || exceptionSpec == userpath + @"\NetHood" || exceptionSpec == userpath + @"\PrintHood" || exceptionSpec == userpath + @"\Start Menu" || exceptionSpec == userpath + @"\Templates" || exceptionSpec == userpath + @"AppData\Local\Temp")
                     {
                         continue;
                     }
@@ -573,13 +559,11 @@ namespace Debug_Tool_2._1
         {
             // Log the exception, display it, etc
             Console.WriteLine(e.Exception.Message);
-            //continue;
         }
         static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             // Log the exception, display it, etc
-            Console.WriteLine((e.ExceptionObject as Exception).Message);
-            //continue;
+            Console.WriteLine((e.ExceptionObject as Exception)?.Message);
         }
     }
 }
